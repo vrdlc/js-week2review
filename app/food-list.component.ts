@@ -4,14 +4,14 @@ import { NewFoodComponent } from './new-food.component';
 import { EditFoodDetailsComponent } from './edit-food-details.component';
 import { ShowFoodComponent } from './show-food.component';
 import { DetailsPipe } from './details.pipe';
-import { HealthyPipe } from './healthy.pipe';
+// import { HealthyPipe } from './healthy.pipe';
 import { Food } from './food.model';
 
 @Component({
   selector: 'food-list',
   inputs: ['foodList'],
   outputs: ['onFoodSelect'],
-  pipes: [DetailsPipe, HealthyPipe],
+  pipes: [DetailsPipe],
   directives: [FoodComponent, NewFoodComponent, EditFoodDetailsComponent, ShowFoodComponent],
   //DOES MY TEMPLATE NEED TO BE IN ITS OWN HTML?
   template: `
@@ -23,6 +23,7 @@ import { Food } from './food.model';
       <option value="all">Show All Food Eaten</option>
       <option value="healthy">Healthy (< 300 cal)</option>
       <option value="notHealthy">Unhealthy (> 300 cal)</option>
+      <option value="nailedIt">NAILED IT (300 cal exactly)</option>
     </select><br><br>
 
 
@@ -32,7 +33,8 @@ import { Food } from './food.model';
   <new-food (onAddNewFood)="createFood($event)"></new-food>
 
     <p>Food Eaten Today: </p>
-      <food-display *ngFor="#currentFood of foodList | healthy: filterHealthyType"
+    <h4>Check the boxes next to the food you have eaten that contains fewer than 300 cal. Remember to be honest! This is your opportunity to review the food you have consumed during the day. Did you make healthy eating choices? If not, what could you do better tomorrow?</h4>
+      <food-display *ngFor="#currentFood of foodList | details: filterFoodDetails"
       (click)="foodClicked(currentFood)"
       [class.selected]="currentFood === selectedFood"
       [food]="currentFood">

@@ -6,8 +6,6 @@ import { Food } from './food.model';
   inputs: ['food'],
   template: `
   <div>
-  <input *ngIf="food.healthy" type="checkbox" checked (click)="toggleHealthy(false)"/>
-  <input *ngIf="!food.healthy" type="checkbox" (click)="toggleHealthy(true)"/>
     <label>{{ food.foodName }}</label>
   </div>
   `

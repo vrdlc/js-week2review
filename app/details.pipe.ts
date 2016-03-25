@@ -9,17 +9,17 @@ import { Food } from './food.model';
 export class DetailsPipe implements PipeTransform {
   transform(input: Food[], args) {
     var caloriesInFood = args[0];
-    if(caloriesInFood < 300) {
+    if(caloriesInFood === "unhealthy") {
       return input.filter((food) => {
-        return food.foodCalories === caloriesInFood;
+        return food.foodCalories > 300;
       });
-    } else if (caloriesInFood > 300) {
+    } else if (caloriesInFood === "healthy") {
       return input.filter((food) => {
-        return food.foodCalories === caloriesInFood;
+        return food.foodCalories < 300;
       });
-    } else if (caloriesInFood === 300) {
+    } else if (caloriesInFood === "nailedIt") {
       return input.filter((food) => {
-        return food.foodCalories === caloriesInFood;
+        return food.foodCalories === 300;
       });
     } else {
       return input;
