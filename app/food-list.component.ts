@@ -40,3 +40,29 @@ import { Food } from './food.model';
   </div>
   `
 })
+
+export class FoodListComponent {
+  public foodList: Food[];
+  public onFoodSelect: EventEmitter<Food>;
+  public selectedFood: Food;
+  public food: Food;
+  public filterFoodDetails: string = "all";
+
+  constructor() {
+    this.onFoodSelect = new EventEmitter();
+  }
+
+  foodClicked(clickedFood: Food): void {
+    console.log('child', clickedFood);
+    this.selectedFood = clickedFood;
+    this.onFoodSelect.emit(clickedFood)
+}
+  createFood(newFood: Food): void {
+    console.log(newFood);
+    this.foodList.push(newFood);
+  }
+  onChange(filterOption) {
+    this.filterFoodDetails = filterOption;
+    console.log(this.filterFoodDetails);
+  }
+}
