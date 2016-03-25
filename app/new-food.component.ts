@@ -9,8 +9,10 @@ import { Food } from './food.model';
 
     <input placeholder="Food Name" #newFoodName class="form-control"><br>
     <input placeholder="Calories" #newFoodCalories class="form-control"><br>
-    <textarea placeholder="Enter Food Details Here" #newFoodDetails class="form-control">
+    <textarea placeholder="Enter Food Details Here" #newFoodDetails class="form-control"></textarea>
     <button (click)="addFood(newFoodName, newFoodCalories, newFoodDetails)" class="btn-info btn add-button">Add Food Item to List</button>
+
+  </div>
   `
 })
 

@@ -1,15 +1,16 @@
 import { Component, EventEmitter } from 'angular2/core';
 import { FoodComponent } from './food.component';
 import { NewFoodComponent } from './new-food.component';
-import { EditFoodDetails } from './edit-food.details';
+import { EditFoodDetailsComponent } from './edit-food-details.component';
+import { DetailsPipe } from './details.pipe';
 import { Food } from './food.model';
 
 @Component({
   selector: 'food-list',
   inputs: ['foodList'],
   outputs: ['onFoodSelect'],
-  pipes: [FoodPipe],
-  directives: [FoodComponent, NewFoodComponent],
+  pipes: [DetailsPipe],
+  directives: [FoodComponent, NewFoodComponent, EditFoodDetailsComponent],
   //DOES MY TEMPLATE NEED TO BE IN ITS OWN HTML?
   template: `
   <!-- FOOD DETAILS FILTER (USING FoodPipe) -->
@@ -19,6 +20,7 @@ import { Food } from './food.model';
     <option value="all">Show All Food Eaten</option>
     <option value="healthy">Healthy (< 300 cal)</option>
     <option value="unhealthy">Unhealthy (> 300 cal)</option>
+    <option value="NAILED IT">NAILED IT (300 cal exactly)</option>
   </select><br><br>
 
 
@@ -31,7 +33,7 @@ import { Food } from './food.model';
 
   <div class = "col-md-6">
     <p>Food Eaten Today </p>
-  <food-display *ngFor="#currentFood of foodList | details: filterBeerDetails
+  <food-display *ngFor="#currentFood of foodList | details: filterBeerDetails"
     (click)="foodClicked(currentFood)"
     [class.selected]="currentFood === selectedFood"
     [food]="currentFood">
