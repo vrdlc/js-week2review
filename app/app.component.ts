@@ -6,15 +6,16 @@ import { Food } from './food.model';
   selector: 'my-app',
   directives: [FoodListComponent],
   template: `
-  <div class="jumbotron">
   <div class="container">
+  <div class="jumbotron top">
     <h1>Jim's Gym's Calorie Counter</h1>
-
+    </div>
+  </div>
     <div class="container">
+    <div class="jumbotron main">
       <food-list [foodList]="foods" (onFoodSelect)="foodWasSelected($event)">
       </food-list>
     </div>
-  </div>
   </div>
   `
 })

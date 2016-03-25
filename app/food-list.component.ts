@@ -4,7 +4,6 @@ import { NewFoodComponent } from './new-food.component';
 import { EditFoodDetailsComponent } from './edit-food-details.component';
 import { ShowFoodComponent } from './show-food.component';
 import { DetailsPipe } from './details.pipe';
-// import { HealthyPipe } from './healthy.pipe';
 import { Food } from './food.model';
 
 @Component({
@@ -13,7 +12,6 @@ import { Food } from './food.model';
   outputs: ['onFoodSelect'],
   pipes: [DetailsPipe],
   directives: [FoodComponent, NewFoodComponent, EditFoodDetailsComponent, ShowFoodComponent],
-  //DOES MY TEMPLATE NEED TO BE IN ITS OWN HTML?
   template: `
   <!-- FOOD DETAILS FILTER (USING DetailsPipe) -->
 
@@ -33,7 +31,7 @@ import { Food } from './food.model';
   <new-food (onAddNewFood)="createFood($event)"></new-food>
 
     <p>Food Eaten Today: </p>
-    <h4>Check the boxes next to the food you have eaten that contains fewer than 300 cal. Remember to be honest! This is your opportunity to review the food you have consumed during the day. Did you make healthy eating choices? If not, what could you do better tomorrow?</h4>
+
       <food-display *ngFor="#currentFood of foodList | details: filterFoodDetails"
       (click)="foodClicked(currentFood)"
       [class.selected]="currentFood === selectedFood"
@@ -62,17 +60,14 @@ export class FoodListComponent {
   }
 
   foodClicked(clickedFood: Food): void {
-    console.log('child', clickedFood);
     this.selectedFood = clickedFood;
     this.onFoodSelect.emit(clickedFood)
   }
   createFood(newFood: Food): void {
-    console.log(newFood);
     this.foodList.push(newFood);
   }
   onChange(filterOption) {
     this.filterFoodDetails = filterOption;
     this.filterHealthyType = filterOption;
-    console.log(this.filterFoodDetails);
   }
 }

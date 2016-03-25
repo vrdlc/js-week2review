@@ -1,3 +1,20 @@
 h1 {
-  color: blue;
+  text-align: center; 
+}
+
+.add-button {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.jumbotron {
+  background-color: #74743B
+}
+
+.main {
+  background-color: #878759;
+}
+
+body {
+  background-color: #494928;
 }
