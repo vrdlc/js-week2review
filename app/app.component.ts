@@ -1,10 +1,12 @@
 import { Component } from 'angular2/core';
+import { FoodListComponent } from './food-list.component';
+import { Food } from './food.model';
 
 @Component({
   selector: 'my-app',
   template: `
   <div class="container">
-    <h1>Skeleton Angular2 App!</h1>
+    <h1>Jim's Gym's Calorie Counter</h1>
   </div>
   `
 })
