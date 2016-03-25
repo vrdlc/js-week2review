@@ -2,6 +2,7 @@ import { Component, EventEmitter } from 'angular2/core';
 import { FoodComponent } from './food.component';
 import { NewFoodComponent } from './new-food.component';
 import { EditFoodDetailsComponent } from './edit-food-details.component';
+import { ShowFoodComponent } from './show-food.component';
 import { DetailsPipe } from './details.pipe';
 import { Food } from './food.model';
 
@@ -10,7 +11,7 @@ import { Food } from './food.model';
   inputs: ['foodList'],
   outputs: ['onFoodSelect'],
   pipes: [DetailsPipe],
-  directives: [FoodComponent, NewFoodComponent, EditFoodDetailsComponent],
+  directives: [FoodComponent, NewFoodComponent, EditFoodDetailsComponent, ShowFoodComponent],
   //DOES MY TEMPLATE NEED TO BE IN ITS OWN HTML?
   template: `
   <!-- FOOD DETAILS FILTER (USING FoodPipe) -->
@@ -24,8 +25,7 @@ import { Food } from './food.model';
   </select><br><br>
 
 
-  <edit-food-details *ngIf="selectedFood" [food]="selectedFood">
-  </edit-food-details>
+
 
   <!-- ADD NEW FOOD -->
   <new-food (onAddNewFood)="createFood($event)"></new-food>
@@ -33,13 +33,18 @@ import { Food } from './food.model';
 
   <div class = "col-md-6">
     <p>Food Eaten Today </p>
-  <food-display *ngFor="#currentFood of foodList | details: filterBeerDetails"
+  <food-display *ngFor="#currentFood of foodList | details: filterFoodDetails"
     (click)="foodClicked(currentFood)"
     [class.selected]="currentFood === selectedFood"
     [food]="currentFood">
   </food-display>
-
   </div>
+
+  <show-food *ngIf="selectedFood" [food]="selectedFood">
+  </show-food>
+
+  <edit-food-details *ngIf="selectedFood" [food]="selectedFood">
+  </edit-food-details>
   `
 })
 
