@@ -2,23 +2,24 @@ import { Pipe, PipeTransform } from 'angular2/core';
 import { Food } from './food.model';
 
 @Pipe({
-  name: 'details'
+  name: "details",
+  pure: false
 })
 
 export class DetailsPipe implements PipeTransform {
   transform(input: Food[], args) {
-    var foodCalories = args[0];
-    if(foodCalories < 300) {
+    var caloriesInFood = args[0];
+    if(caloriesInFood < 300) {
       return input.filter((food) => {
-        return food.foodCalories === foodCalories;
+        return food.foodCalories === caloriesInFood;
       });
-    } else if (foodCalories > 300) {
+    } else if (caloriesInFood > 300) {
       return input.filter((food) => {
-        return food.foodCalories === foodCalories;
+        return food.foodCalories === caloriesInFood;
       });
-    } else if (foodCalories === 300) {
+    } else if (caloriesInFood === 300) {
       return input.filter((food) => {
-        return food.foodCalories === foodCalories;
+        return food.foodCalories === caloriesInFood;
       });
     } else {
       return input;

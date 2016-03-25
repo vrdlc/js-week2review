@@ -11,7 +11,8 @@ import { Food } from './food.model';
     <h1>Jim's Gym's Calorie Counter</h1>
 
     <div class="container">
-      <food-list [foodList]="foods" (onFoodSelect)="foodWasSelected($event)"></food-list>
+      <food-list [foodList]="foods" (onFoodSelect)="foodWasSelected($event)">
+      </food-list>
     </div>
   </div>
   </div>
