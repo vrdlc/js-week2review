@@ -1,4 +1,4 @@
-# GitHub User Search Engine
+# Jim's Gym Calorie Counter
 
 #### _March 17th, 2016_
 
